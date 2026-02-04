@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path("<day>", views.week, name="week"),
+    path("<str:day>", views.week, name="week"),
 
 
 ]
