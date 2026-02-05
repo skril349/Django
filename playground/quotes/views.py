@@ -1,5 +1,4 @@
-from email.policy import HTTP
-# from django.shortcuts import render
+from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 # Create your views here.
@@ -35,9 +34,6 @@ def week(request, day):
     return HttpResponse(f"Happy {day.capitalize()}! {quote_text}")
 
 def index(request):
-    list_items = ""
-    for day in days_of_week:
-        day_path = reverse("week", args=[day])
-        list_items += f"<li><a href='{day_path}'>{day.capitalize()}</a></li>"
-    response_html = f"<ul>{list_items}</ul>"
-    return HttpResponse(response_html)
+    return render(request, "quotes/home.html", {
+            "days_of_week": days_of_week,
+        })
