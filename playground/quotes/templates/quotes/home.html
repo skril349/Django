@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+
+{% load static %}
+
 {% block title %}Quote home Page{% endblock %}
+
+{% block page_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quotes/quotes_styles.css' %}">
+{% endblock %}
 
 {% block content %}
     <h1>Welcome to the Quotes page!</h1>
