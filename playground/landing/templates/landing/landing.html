@@ -11,6 +11,13 @@
         <h2>Hello, {{ name | upper }}!</h2>
         <h2>Your age is {{ age }}.</h2>
         <h2>today is {{ date | date:"d/m/Y" }} </h2>
+    
+        <h2>My stack:</h2>
+        <ul>
+        {% for item in stack %}
+            <li>{{ item }}</li>
+        {% endfor %}
+        </ul>
     {% else %}
         <h2>Hello, guest!</h2>
     {% endif %}
