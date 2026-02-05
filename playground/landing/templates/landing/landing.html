@@ -14,8 +14,8 @@
     
         <h2>My stack:</h2>
         <ul>
-        {% for item in stack %}
-            <li>{{ item }}</li>
+        {% for tool in stack %}
+            <li><a href="{% url 'stack' tool.id %}">{{ tool.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

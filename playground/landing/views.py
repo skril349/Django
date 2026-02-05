@@ -3,7 +3,7 @@ from django.shortcuts import render
 from datetime import date
 # Create your views here.
 
-stack = ["python", "django", "javascript","PHP"]
+stack =[{"id":"python", "name":"python"}, {"id":"django", "name":"django"}, {"id":"javascript", "name":"javascript"},{"id":"PHP", "name":"PHP"}]
 def home(request):
     return render(request, "landing/landing.html", {
         "name": "Antoni",
@@ -11,3 +11,7 @@ def home(request):
         "date": date.today(),
         "stack": stack
     })
+    
+    
+def stack_detail(request, tool):
+    return HttpResponse(f"You are looking for {tool} stack details!")
