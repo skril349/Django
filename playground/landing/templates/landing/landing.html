@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Landing Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Landing Page{% endblock %}
+
+{% block content %}
     <h1>Welcome to the landing page!</h1>
     {% if name %}
         <h2>Hello, {{ name | upper }}!</h2>
@@ -21,6 +17,4 @@
     {% else %}
         <h2>Hello, guest!</h2>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}
