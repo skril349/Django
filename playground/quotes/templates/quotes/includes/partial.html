@@ -1,3 +1,8 @@
 <div>
     <h1>Quote of the day</h1>
+    {% if days_of_week %}
+        <p>{{ days_of_week.items }}</p>
+    {% else %}
+        <p>No quote available for today.</p>
+    {% endif %}
 </div>

@@ -5,8 +5,10 @@
     <h1>Welcome to the Quotes page!</h1>
 
     {% include "quotes/includes/partial.html" %}
-    
+
     {% for day, quote in days_of_week.items %}
         <h2><a href="{% url 'week' day %}">{{ day|title }}</a></h2>
     {% endfor %}
+
+    {% include "quotes/includes/partial.html" with days_of_week=days_of_week %}
 {% endblock %}
