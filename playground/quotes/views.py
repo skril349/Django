@@ -1,6 +1,7 @@
 from email.policy import HTTP
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 def index(request):
@@ -21,7 +22,8 @@ def days_week_with_number(request, day):
     if day < 1 or day > len(days):
         return HttpResponseNotFound("Invalid day number!")
     redirect_day = days[day - 1]
-    return HttpResponseRedirect(f"/quotes/{redirect_day}")
+    redirect_path = reverse("week", args=[redirect_day])
+    return HttpResponseRedirect(redirect_path)
 
 
 def week(request, day):
