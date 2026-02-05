@@ -19,7 +19,7 @@ days_of_week = {
 def days_week_with_number(request, day):
     days = list(days_of_week.keys())
     if day < 1 or day > len(days):
-        return HttpResponseNotFound("<h1>Invalid day number!</h1>")
+        return render(request, "404.html", status=404)
     redirect_day = days[day - 1]
     redirect_path = reverse("week", args=[redirect_day])
     return HttpResponseRedirect(redirect_path)
@@ -30,7 +30,7 @@ def week(request, day):
     if day.lower() in days_of_week:
         quote_text = days_of_week[day.lower()]
     else:
-        return HttpResponseNotFound("Invalid day!")
+        return render(request, "404.html", status=404)
     return HttpResponse(f"Happy {day.capitalize()}! {quote_text}")
 
 def index(request):
