@@ -68,4 +68,26 @@ def course_detail(request):
     return render(request, 'courses/course_detail.html', {'course': course})
 
 def course_lessons(request):
-    pass
+    lesson = {
+        "course_title": 'Python for Beginners',
+        "progress":30,
+        "course_content":[
+            {
+                "id":1,
+                "name":"Introduction to Python",
+                "total_lessons":6,
+                "completed_lessons":3,
+                "lessons":[
+                    {
+                        "name":"What is Python?",
+                        "type":"video"
+                    },
+                    {
+                        "name":"Setting up Python",
+                        "type":"article"
+                    }
+                ]
+            }
+        ]
+    }
+    return render(request, 'courses/course_lessons.html', {'lesson': lesson})
