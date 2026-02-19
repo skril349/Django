@@ -39,7 +39,32 @@ def course_list(request):
     return render(request, 'courses/courses.html', {'courses': courses})
 
 def course_detail(request): 
-    return render(request, 'courses/course_detail.html')
+    course = {
+        "course_title": 'Python for Beginners',
+        "course_link":"",
+        "info_course": {
+            "lessons": 79,
+            "duration": 8,
+            "instructor": "Toni Vives"
+        },
+        "course_content":[
+            {
+                "id":1,
+                "name":"Introduction to Python",
+                "lessons":[
+                    {
+                        "name":"What is Python?",
+                        "type":"video"
+                    },
+                    {
+                        "name":"Setting up Python",
+                        "type":"article"
+                    }
+                ]
+            }
+        ]
+    }
+    return render(request, 'courses/course_detail.html', {'course': course})
 
 def course_lessons(request):
     pass
