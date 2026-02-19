@@ -38,8 +38,7 @@ def course_list(request):
     ]
     return render(request, 'courses/courses.html', {'courses': courses})
 
-def course_detail(request, id):
-    
+def course_detail(request): 
     return render(request, 'courses/course_detail.html')
 
 def course_lessons(request):
