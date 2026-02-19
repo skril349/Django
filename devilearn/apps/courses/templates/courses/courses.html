@@ -1,4 +1,11 @@
 
+{% extends 'base.html' %}
+{% load static %}
+{% block title%}Cursos{% endblock %}
+{% block custom_styles %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% endblock custom_styles%}
+{% block content %}
     <div class="layout">
 
         <div class="sidebar">
@@ -142,3 +149,5 @@
         </div>
     </div>
     <script src="./js/script.js"></script>
+
+{% endblock content %}
