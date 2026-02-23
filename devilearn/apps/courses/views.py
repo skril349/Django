@@ -87,7 +87,23 @@ def course_lessons(request):
                         "type":"article"
                     }
                 ]
-            }
+            },
+                {
+                    "id":2,
+                    "name":"Python Basics",
+                    "total_lessons":10,
+                    "completed_lessons":0,
+                    "lessons":[
+                        {
+                            "name":"Variables and Data Types",
+                            "type":"video"
+                        },
+                        {
+                            "name":"Control Structures",
+                            "type":"article"
+                        }
+                    ]
+                }
         ]
     }
     return render(request, 'courses/course_lessons.html', {'lesson': lesson})

@@ -30,7 +30,7 @@
             <div class="accordion">
                 {% for section in lesson.course_content %}
                     <div class="accordion-item">
-                        <button class="accordion-header">Sección {{ lesson.course_content.0.id }}: {{ lesson.course_content.0.name }} <span>{{ lesson.course_content.0.completed_lessons }} / {{ lesson.course_content.0.total_lessons }}</span></button>
+                        <button class="accordion-header">Sección {{ section.id }}: {{ section.name }} <span>{{ section.completed_lessons }} / {{ section.total_lessons }}</span></button>
                         <div class="accordion-content">
                             <ul>
                                 {% for lesson in section.lessons %}
