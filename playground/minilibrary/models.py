@@ -1,3 +1,5 @@
+from enum import unique
+
 from django.db import models
 from django.contrib.auth import get_user_model
 # Create your models here.
@@ -22,6 +24,7 @@ class Book(models.Model):
     pages = models.IntegerField()
     isbn = models.CharField(max_length=50, unique=True)
     genres = models.ManyToManyField(Genre, related_name='books')
+    recommended_by = models.ManyToManyField(get_user_model(), through='Recommendation',related_name='recommendations')
     
     def __str__(self):
         return self.title
@@ -54,3 +57,16 @@ class Loan(models.Model):
     
     def __str__(self):
         return f"{self.user.username} borrowed {self.book.title} on {self.loan_date}"
+    
+    
+class Recommendation(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    note = models.TextField(null=True, blank=True)
+    
+    class Meta:
+        unique_together = ('user', 'book')
+        
+
+    
