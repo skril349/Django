@@ -26,3 +26,11 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
+class BookDetail(models.Model):
+    book = models.OneToOneField(Book, on_delete=models.CASCADE, related_name='detail')
+    summary = models.TextField()
+    language = models.CharField(max_length=50)
+    cover_url = models.CharField(max_length=200, null=True, blank=True)    
+    def __str__(self):
+        return f"Details of {self.book.title}"
+    
