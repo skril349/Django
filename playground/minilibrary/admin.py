@@ -9,6 +9,11 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 User = get_user_model()
 
+@admin.action(description='Marcar como devuelto')
+def mark_as_returned(modeladmin, request, queryset):
+    queryset.update(is_returned=True)
+    modeladmin.message_user(request, f"{queryset.count()} préstamos marcados como devueltos.")
+
 class LoanInline(admin.TabularInline):
     model = Loan
     extra = 0
@@ -56,6 +61,7 @@ class LoanAdmin(admin.ModelAdmin):
     list_filter = ('is_returned', 'loan_date', 'return_date')
     date_hierarchy = 'loan_date'
     readonly_fields = ('loan_date',)
+    actions = [mark_as_returned]
 
 admin.site.register(Author)
 admin.site.register(Genre)
