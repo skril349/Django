@@ -9,6 +9,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 User = get_user_model()
 
+admin.site.site_header = "Mini Biblioteca Admin"
+admin.site.site_title = "Mini Biblioteca Admin Portal"
+admin.site.index_title = "Bienvenido al panel de administración de la Mini Biblioteca"
+
 @admin.action(description='Marcar como devuelto')
 def mark_as_returned(modeladmin, request, queryset):
     queryset.update(is_returned=True)
