@@ -39,7 +39,16 @@ class BookAdmin(admin.ModelAdmin):
     date_hierarchy = 'published_date'
     filter_horizontal = ('genres',)
     readonly_fields = ('pages',)
-    
+    fieldsets = (
+        ("Informacion general", {
+            'fields': ('title', 'author', 'published_date', 'genres')
+        }),
+        ("Detalles adicionales", {
+            'fields': ('pages', 'isbn'),
+            'classes': ('collapse',)
+        }),
+    )
+
 @admin.register(Loan)
 class LoanAdmin(admin.ModelAdmin):
     list_display = ('book', 'user', 'loan_date', 'return_date', 'is_returned')
