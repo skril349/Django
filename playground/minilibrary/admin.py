@@ -34,6 +34,14 @@ class CustomUserAdmin(BaseUserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
     search_fields = ('username', 'email', 'first_name', 'last_name')
 
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'birth_date')
+    search_fields = ["name"]
+    list_filter = ('birth_date',)
+    ordering = ['name']
+
+
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     inlines = [ReviewInline, BookDetailInline]
@@ -44,6 +52,7 @@ class BookAdmin(admin.ModelAdmin):
     date_hierarchy = 'published_date'
     filter_horizontal = ('genres',)
     readonly_fields = ('pages',)
+    autocomplete_fields = ['author']
     fieldsets = (
         ("Informacion general", {
             'fields': ('title', 'author', 'published_date', 'genres')
@@ -63,7 +72,7 @@ class LoanAdmin(admin.ModelAdmin):
     readonly_fields = ('loan_date',)
     actions = [mark_as_returned]
 
-admin.site.register(Author)
+# admin.site.register(Author)
 admin.site.register(Genre)
 admin.site.register(BookDetail)
 admin.site.register(Review)
