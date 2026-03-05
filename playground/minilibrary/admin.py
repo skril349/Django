@@ -41,6 +41,9 @@ class AuthorAdmin(admin.ModelAdmin):
     list_filter = ('birth_date',)
     ordering = ['name']
 
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
@@ -52,7 +55,7 @@ class BookAdmin(admin.ModelAdmin):
     date_hierarchy = 'published_date'
     filter_horizontal = ('genres',)
     readonly_fields = ('pages',)
-    autocomplete_fields = ['author']
+    autocomplete_fields = ['author', 'genres']
     fieldsets = (
         ("Informacion general", {
             'fields': ('title', 'author', 'published_date', 'genres')
@@ -71,9 +74,10 @@ class LoanAdmin(admin.ModelAdmin):
     date_hierarchy = 'loan_date'
     readonly_fields = ('loan_date',)
     actions = [mark_as_returned]
+    raw_id_fields = ['book', 'user']
 
 # admin.site.register(Author)
-admin.site.register(Genre)
+# admin.site.register(Genre)
 admin.site.register(BookDetail)
 admin.site.register(Review)
 admin.site.register(Recommendation)
