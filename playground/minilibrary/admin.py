@@ -65,6 +65,12 @@ class BookAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+    
+    def has_add_permission(self, request):
+        return request.user.is_superuser
+    
+    def has_change_permission(self, request, obj = None):
+        return request.user.is_staff
 
 @admin.register(Loan)
 class LoanAdmin(admin.ModelAdmin):
