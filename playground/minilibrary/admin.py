@@ -38,16 +38,20 @@ class BookAdmin(admin.ModelAdmin):
     ordering = ['published_date']
     date_hierarchy = 'published_date'
     filter_horizontal = ('genres',)
+    readonly_fields = ('pages',)
     
-
-    
+@admin.register(Loan)
+class LoanAdmin(admin.ModelAdmin):
+    list_display = ('book', 'user', 'loan_date', 'return_date', 'is_returned')
+    search_fields = ('book__title', 'user__username')
+    list_filter = ('is_returned', 'loan_date', 'return_date')
+    date_hierarchy = 'loan_date'
+    readonly_fields = ('loan_date',)
 
 admin.site.register(Author)
 admin.site.register(Genre)
-# admin.site.register(Book, BookAdmin)
 admin.site.register(BookDetail)
 admin.site.register(Review)
-admin.site.register(Loan)
 admin.site.register(Recommendation)
 
 try:
